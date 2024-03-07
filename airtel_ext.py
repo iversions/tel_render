@@ -1,7 +1,7 @@
 import os
 import glob
 import pdfplumber
-import pandas as pd
+# import pandas as pd
 from tabulate import tabulate
 import re
 from string import ascii_lowercase
