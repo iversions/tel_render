@@ -6,7 +6,8 @@ import pdfplumber
 import re
 from string import ascii_lowercase
 from itertools import groupby
-import code.tel_int
+from tel_int import insert_into_main_table
+from tel_int import duplicate_bill_check
 # pd.set_option('display.max_columns', None)
 # pd.set_option('display.max_rows', None)
 
@@ -106,12 +107,12 @@ def airext (path):
     taxable ='-'
     non_taxable ='-'
 
-    duplicate = tel_int.duplicate_bill_check(bill_no)
+    duplicate = duplicate_bill_check(bill_no)
 
     if duplicate == 1:
         status = 'DUPLICATE'
     if duplicate ==  0:
         status = 'PROCCESSED'
-    tel_int.insert_into_main_table('AIRTEL',status,employee_name,bill_no,bill_period_from,bill_period_to,bill_date,telephone_no,bill_amount,cgst,sgst,total_amount,path,taxes,taxable,non_taxable,ship_to_state_code,supply)
+    insert_into_main_table('AIRTEL',status,employee_name,bill_no,bill_period_from,bill_period_to,bill_date,telephone_no,bill_amount,cgst,sgst,total_amount,path,taxes,taxable,non_taxable,ship_to_state_code,supply)
 
 
