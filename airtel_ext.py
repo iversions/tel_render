@@ -6,7 +6,7 @@ import pdfplumber
 import re
 from string import ascii_lowercase
 from itertools import groupby
-import tel_int
+import code.tel_int
 # pd.set_option('display.max_columns', None)
 # pd.set_option('display.max_rows', None)
 
