@@ -23,11 +23,11 @@ from string import ascii_lowercase
 from itertools import groupby
 # import pandas as pd
 from office365.sharepoint.files.move_operations import MoveOperations
-import airtel_ext
-import mtnl_ext
+import code.airtel_ext
+import code.mtnl_ext
 
 config_obj = configparser.ConfigParser()
-config_obj.read('/code/config.ini')
+config_obj.read('~/code/config.ini')
 
 sppaths = config_obj['spdl_path']
 spparam = config_obj['spdoclib']
