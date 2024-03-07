@@ -2,13 +2,13 @@ import os
 import glob
 import pdfplumber
 # import pandas as pd
-from tabulate import tabulate
+# from tabulate import tabulate
 import re
 from string import ascii_lowercase
 from itertools import groupby
 import tel_int
-pd.set_option('display.max_columns', None)
-pd.set_option('display.max_rows', None)
+# pd.set_option('display.max_columns', None)
+# pd.set_option('display.max_rows', None)
 
 
 def mtnlext (path):
