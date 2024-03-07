@@ -23,8 +23,8 @@ from string import ascii_lowercase
 from itertools import groupby
 # import pandas as pd
 from office365.sharepoint.files.move_operations import MoveOperations
-import code.airtel_ext
-import code.mtnl_ext
+from airtel_ext import airext
+from mtnl_ext import mtnlext
 
 config_obj = configparser.ConfigParser()
 config_obj.read('~/code/config.ini')
@@ -109,10 +109,10 @@ for folder in root_folder.folders:
                     text += page.extract_text()
             
             if "Bharti Airtel" in text:
-                airtel_ext.airext(path)
+                airext(path)
                 # exec(open(r'D:\TELEPHONE_BILLS\airtel_bill.py').read(), {'path': path })    
             if "Mahanagar" in text:
-                mtnl_ext.mtnlext(path)
+                mtnlext(path)
                 print('IT is MTNL')
                 # exec(open(r'D:\TELEPHONE_BILLS\MTNL_pdfplumber.py').read(), {'path': path })
         time.sleep(5)
