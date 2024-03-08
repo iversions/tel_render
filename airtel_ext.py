@@ -13,7 +13,7 @@ from tel_int import duplicate_bill_check
 
 all_text = []
 words = []
-print('inisde bill file')
+print('Waiting')
 #path = 'D:\TELEPHONE_BILLS\Airtel_UAT_1.pdf'
 
 def airext (path):
