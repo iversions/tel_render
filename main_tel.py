@@ -98,11 +98,11 @@ def main(sproot,spprocessed):
                     
                     #TELEPHONE CHECK
                     if "Bharti Airtel" in text:
-                        exec(open(r'D:\Airline Invoice Code\airtel_bill.py').read(), {'path': path })  
+                        airext(path)  
                         flag = 0
                     if "Mahanagar" in text:
                         print('IT is MTNL')
-                        exec(open(r'D:\Airline Invoice Code\MTNL_pdfplumber.py').read(), {'path': path })
+                        mtnlext(path)
                         flag = 2
                 
                 pdf.close()
