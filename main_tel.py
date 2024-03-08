@@ -22,6 +22,7 @@ from itertools import groupby
 from office365.sharepoint.files.move_operations import MoveOperations
 from airtel_ext import airext
 from mtnl_ext import mtnlext
+from Air_Inv_Ext import airinvex
 
 config_obj = configparser.ConfigParser()
 config_obj.read('/code/config.ini')
@@ -92,7 +93,7 @@ def main(sproot,spprocessed):
                     #AIRLINE CHECK
                     for words in list_of_airlines:
                         if words in text:
-                            exec(open(r'D:\Airline Invoice Code\Airline_Invoice_Extraction.py').read(), {'path': path })
+                            airinvex(path)
                             flag = 1
                             break
                     
