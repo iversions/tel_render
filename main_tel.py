@@ -111,7 +111,7 @@ def main(sproot,spprocessed):
                         mtnlext(path)
                         flag = 2
                 
-                pdf.close()
+                
                 time.sleep(5)
                 os.remove(path)
             move_to_folder_processed(folder.serverRelativeUrl,sprppro_tel)
