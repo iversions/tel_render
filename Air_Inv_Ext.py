@@ -4,7 +4,6 @@ from Air_int import insert_into_main_table
 
 def airinvex(path):
     with pdfplumber.open(path) as pdf:
-        pdf = pdfplumber.open(path)
         pg = pdf.pages[0]
         extracted_text = pg.extract_text()
         table = pg.extract_table()
