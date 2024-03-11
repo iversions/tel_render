@@ -15,11 +15,10 @@ from tel_int import duplicate_bill_check
 
 def mtnlext (path):
 #path = r'D:\TELEPHONE_BILLS\MTNL.pdf'
-    p0= pdfplumber.open(path)
-
-
-    firstpage = p0.pages[0]
-    charst = firstpage.extract_words()
+    with pdfplumber.open(path) as p0:
+        firstpage = p0.pages[0]
+        charst = firstpage.extract_words()
+        
     # im = firstpage.to_image(resolution=300)
     # im.draw_rects(firstpage.extract_words())
     #box2 = (40,20,280,90)
@@ -182,8 +181,6 @@ def mtnlext (path):
         status = 'DUPLICATE'
     if duplicate ==  0:
         status = 'PROCCESSED'
-
-    p0.close()
 
     insert_into_main_table('MTNL',status,employee_name,bill_no,bill_period_from,bill_period_to,bill_date,telephone_no,bill_amount,cgst,sgst,total_amount,path,taxes,taxable,non_taxable,ship_to_state_code,supply)
 
