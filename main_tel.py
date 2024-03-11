@@ -63,7 +63,7 @@ ctx = ClientContext(spdoclib).with_credentials(ClientCredential(cid, cs))
 
      
 def main(sproot,spprocessed):
-    global flag,list_of_airlines
+    global flag,list_of_airlines,sproot_tel,sprppro_tel
     global ctx
     print('1')
 
