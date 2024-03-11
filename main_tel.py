@@ -51,11 +51,15 @@ spproblematic = sppaths['problematic']
 spduplicate = sppaths['duplicate'] ###Add duplicate path
 
 lsppath = fol_loc['spdl']
+sprppro_air = sprlpath['processed_for_air']
+sprppro_tel = sprlpath['processed_for_tel']
 
-sprppro = sprlpath['processed']
-sprproot= sprlpath['root']
+
+sprproot_air = sprlpath['root_for_air']
+sprproot_tel = sprlpath['root_for_air']
+
 sprpproblem = sprlpath['problematic']
-sprpduplicate = sprlpath['duplicate'] ###Add duplicate path
+sprpduplicate = sprlpath['duplicate']###Add duplicate path
 
 
 list_of_airlines = ['AirAsia','AIR INDIA','SpiceJet','InterGlobe Aviation','MALAYSIA AIRLINES BERHAD','TATA SIA Airlines']
