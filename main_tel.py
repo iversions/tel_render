@@ -57,6 +57,11 @@ sprproot= sprlpath['root']
 sprpproblem = sprlpath['problematic']
 sprpduplicate = sprlpath['duplicate'] ###Add duplicate path
 
+
+list_of_airlines = ['AirAsia','AIR INDIA','SpiceJet','InterGlobe Aviation','MALAYSIA AIRLINES BERHAD','TATA SIA Airlines']
+ctx = ClientContext(spdoclib).with_credentials(ClientCredential(cid, cs))
+
+     
 def main(sproot,spprocessed):
     global flag,list_of_airlines
     global ctx
