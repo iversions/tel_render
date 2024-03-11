@@ -109,10 +109,7 @@ def main(sproot,spprocessed):
                 pdf.close()
                 time.sleep(5)
                 os.remove(path)
-            if flag == 1:
-                move_to_folder_processed(folder.serverRelativeUrl,sprppro_air)
-            if flag == 2:
-                move_to_folder_processed(folder.serverRelativeUrl,sprppro_tel)
+            move_to_folder_processed(folder.serverRelativeUrl,sprppro_tel)
     
 
 def move_to_folder_processed(folder,sprppro):
@@ -132,5 +129,5 @@ def try_get_folder(url):
             raise ValueError(e.response.text)
 
     
-main(sproot_air,spprocessed_air)
+#main(sproot_air,spprocessed_air)
 main(sproot_tel,spprocessed_tel)
