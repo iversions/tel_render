@@ -183,6 +183,8 @@ def mtnlext (path):
     if duplicate ==  0:
         status = 'PROCCESSED'
 
+    p0.close()
+
     insert_into_main_table('MTNL',status,employee_name,bill_no,bill_period_from,bill_period_to,bill_date,telephone_no,bill_amount,cgst,sgst,total_amount,path,taxes,taxable,non_taxable,ship_to_state_code,supply)
 
 
