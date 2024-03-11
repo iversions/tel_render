@@ -3,10 +3,12 @@ import pdfplumber
 from Air_int import insert_into_main_table
 
 def airinvex(path):
-    pdf = pdfplumber.open(path)
-    pg = pdf.pages[0]
-    extracted_text = pg.extract_text()
-    table = pg.extract_table()
+    with pdfplumber.open(path) as pdf:
+        pdf = pdfplumber.open(path)
+        pg = pdf.pages[0]
+        extracted_text = pg.extract_text()
+        table = pg.extract_table()
+        
     pgnr_nm= '-';inv_no= '-';inv_dte= '-';flghfrom= '-';flght_to= '-';sac= '-';tax_val= '-';nontax_val= '-';tot= '-';igst_amt= '-';cgst_amt='-';sgst_amt='-';tot_inval = '-';
 
     def is_float(string):
@@ -382,5 +384,5 @@ def airinvex(path):
     print("\n\nCustomer Name: ",cus_name)
     print("\n\nCustomer GST : ",cus_gst)
     print("\n\nPassenger name %s \n\n Invoice Number %s \n\n Invoice Date %s \n\n Flight From %s \n\n Flight To %s \n\n SAC Code %s \n\n Taxable Value %s \n\n Non taxable value %s \n\n Total non tax %s \n\n IGST Amount %s \n\n CGST Amount %s \n\n SGST Amount %s \n\n Total invoice value %s" % (pgnr_nm.upper(),inv_no,inv_dte,flghfrom,flght_to,sac,tax_val,nontax_val,tot,igst_amt,cgst_amt,sgst_amt,tot_inval))
-    pdf.close()
+    
     insert_into_main_table('Airline Bill',path,supp_name,sup_gst,cus_name,cus_gst,pgnr_nm,inv_no,inv_dte,flghfrom,flght_to,sac,tax_val,nontax_val,tot,igst_amt,cgst_amt,sgst_amt,tot_inval)
