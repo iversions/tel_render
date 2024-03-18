@@ -198,35 +198,151 @@ def airinvex(path):
         
         if 'AIR INDIA' in i:
             print('air india');
-            core_data = table[2:4]
-            for row in extracted_text.split("\n"):
-                try:
-                    if "Invoice No. : " in row: inv_no = row.split()[-1]
-                    print(inv_no)
-                except Exception as e:
-                    inv_no =''
-                try:
-                    if "Invoice Date : " in row: inv_dte = row.split()[-1]
-                    print(inv_dte)
-                except Exception as e:
-                    inv_dte =''
-                try:
-                    if "(In figure)" in row: tot_inval = row.split()[-1].replace(",","") 
-                except Exception as e:
-                    tot_inval =''
-            columns = ["srno","desc_ser","hsn","place","vos","tx_amt","nontax_val","tax_val","disct","net_tx_v","cgst_rt","cgst_amt","sgst_rt","sgst_amt","igst_rt","igst_amt"]
-            dictionary = [dictionarymaker(row) for row in core_data]
+            supp_name ="AIR INDIA LTD"
+    
+            firstpage = pg
+            #charst = firstpage.extract_words()
+            charst = firstpage.extract_words()
+            im = firstpage.to_image(resolution=150)
+            im.draw_rects(firstpage.extract_words())
+            invc3 = firstpage.extract_table()
+            #print('\n')
+            asd = 0
+            for i in invc3:
+                print(asd, invc3[asd])
+                asd+=1
+    
+            #print(invc3)
+    
+            training_params = []
+            u = 0
+            z = []
+            for x in charst:
+                w = charst[u]['text']
+                #print(f'Charset {y} is:',w)
+                u+=1
+                #print('\n')
+                z.append(w)
+            K =':'
+            while(K in z):
+                z.remove(K)
+    
             try:
-                sac = dictionary[0]['hsn']
-                tax_val = float(dictionary[1]['tax_val'])
-                nontax_val = float(dictionary[1]['nontax_val'])
-                cgst_amt = float(dictionary[1]['cgst_rt'])
-                #sgst_amt = float(dictionary[1]['sgst_rt'])
-                #igst_amt = float(dictionary[1]['igst_rt'])
-                tot_inval = float(tot_inval)
-                print(sac,tax_val,nontax_val,igst_amt,tot_inval)
+                t = 0
+                for w in z:
+                    #print(r,'   ',z[r:r+2])
+                    if " ".join(z[t:t+2]) == 'Invoice No.' or " ".join(z[t:t+2]) == 'Bill No':
+                        inv_no = z[t+2]
+                        break
+                    t+=1
             except Exception as e:
-                sac,tax_val,nontax_val,igst_amt,tot_inval = '','','','',''
+                inv_no ='-'
+    
+    
+            try:
+                print('\n')
+                x = 0
+                for inv in z:
+                    x+=1
+                    if inv == 'Date':
+                        bbb = z[x]
+                        inv_dte = bbb
+                        break
+            except Exception as e:
+                inv_dte ='-'
+    
+            try:
+                a = 0
+                for inv in z:
+                    a+=1
+                    if inv == 'Name':   
+                        ddd = z[a:]
+                        #print('List for name is:', ddd)
+                        #break
+                        name1 = 0
+                        yyy = []
+                        for aa in ddd:
+                            if ddd[name1] == 'Address':
+                                cc = name1
+                                cus_name = " ".join(str(i) for i in ddd[:cc])  
+                            name1+=1
+                        break
+            except Exception as e:
+                cus_name ='-'
+    
+            try:
+                thirdpage = pdf.pages[2]
+                table = thirdpage.extract_table()
+                
+                pgnr_nm = table[2][1]
+            except Exception as e:
+                pgnr_nm ='-'
+            
+            try:
+                flghfrom = table[2][3].split('-')[0]
+                flght_to = table[2][3].split('-')[1]
+            except Exception as e:
+                flghfrom = '-'
+                flght_to ='-'
+    
+            
+            print('\n')
+            try:
+                b = 0
+                for inv in z:
+                    b+=1
+                    if inv == 'GSTIN':
+                        eee = z[b]
+                        break
+            except Exception as e:
+                ee= '-'
+    
+            try:
+                if '2.50' in invc3[2]:
+                    d = 0
+                    for inv in invc3[2]:
+                        d+=1
+                        if inv == '2.50':
+                            ggg = invc3[2][d]
+                            cgst_amt = ggg
+                            sgst_amt = ggg
+                            igst = '-'
+                            break
+                elif '5.00' in invc3[2]:
+                    d = 0
+                    for inv in invc3[2]:
+                        d+=1
+                        if inv == '5.00':
+                            ggg = invc3[2][d]
+                            igst_amt = ggg
+                            cgst_amt = '-'
+                            sgst_amt = '-'
+                            break
+            except Exception as e:
+                igst_amt,cgst_amt,sgst_amt ='-','-','-'
+            print('\n')
+    
+            try:
+                tax_val = invc3[3][9]
+            except Exception as e:
+                tax_val ='-'
+            
+            try:
+                nontax_val = invc3[3][6]
+            except Exception as e:
+                nontax_val ='-'
+    
+            print('\n')
+            try:
+                tot_inval = invc3[4][7]
+            except Exception as e:
+                tot_inval = '-'
+            print('\n')
+            try:
+                sac = invc3[2][2]
+            except Exception as e:
+                sac ='-'
+
             break
         
 
