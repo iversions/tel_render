@@ -61,7 +61,17 @@ def list_connection(list_name):
         else:
             print(e.response.text)
 
-def insert_into_main_table(title,path,supp_name,sup_gst,cus_name,cus_gst,pgnr_nm,inv_no,inv_dte,flghfrom,flght_to,sac,tax_val,nontax_val,tot,igst_amt,cgst_amt,sgst_amt,tot_inval): 
+def duplicate_bill_check(inv_no):
+    list_connection('IProv1')
+    paged_items = tasks_list.items.get().execute_query()
+    for index, item in enumerate(paged_items): 
+        if inv_no == item.properties.get("Invoice_no"):
+            print(item.properties.get('RequestNo'))
+            return 1
+    return 0
+
+
+def insert_into_main_table(title,status,path,supp_name,sup_gst,cus_name,cus_gst,pgnr_nm,inv_no,inv_dte,flghfrom,flght_to,sac,tax_val,nontax_val,tot,igst_amt,cgst_amt,sgst_amt,tot_inval): 
     list_connection('IProv1')
     try:
         items = tasks_list.items.get().execute_query()
@@ -80,6 +90,7 @@ def insert_into_main_table(title,path,supp_name,sup_gst,cus_name,cus_gst,pgnr_nm
         task_item = tasks_list.add_item(
             {
                 'Bill_Type' : str(title),
+                'status' : str(status)
                 'RequestNo' : str(new_req),
                 'Supplier_nm'  :str(supp_name),
                 'Supplier_gst' : str(sup_gst),
