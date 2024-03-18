@@ -117,7 +117,7 @@ def insert_into_main_table(title,path,supp_name,sup_gst,cus_name,cus_gst,pgnr_nm
 from datetime import datetime
 
 def try_parsing_date(text):
-    for fmt in ('%d­%b­%Y','%d-%b-%y','%d-%m-%Y','%d-%b-%Y','%d%b%Y','%d-%b-%Y','%d-%b-%y','%Y-%m-%d', '%d.%m.%Y', '%d/%m/%Y'):
+    for fmt in ('%d­%b­%Y','%d-%b-%y','%d-%m-%Y','%d-%b-%Y','%d%b%Y','%d-%b-%Y','%d-%b-%y','%Y-%m-%d', '%d.%m.%Y', '%d/%m/%Y','%d/%m/%y'):
         try:
             
             input_date = datetime.strptime(text, fmt)
