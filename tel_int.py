@@ -80,9 +80,9 @@ def insert_into_main_table(bill_name,status,employee_name,bill_no,bill_period_fr
 
     except Exception as te:
         new_req = 'REQ-1'
-    bill_period_from =try_parsing_date(bill_period_from)
-    bill_period_to = try_parsing_date(bill_period_to)
-    bill_date = try_parsing_date(bill_date)
+    bill_period_from =try_parsing_date(bill_period_from.replace(' ',''))
+    bill_period_to = try_parsing_date(bill_period_to.replace(' ',''))
+    bill_date = try_parsing_date(bill_date.replace(' ',''))
     try:
         task_item = tasks_list.add_item(
             {
