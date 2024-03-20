@@ -1,7 +1,7 @@
 import re
 import pdfplumber
 from Air_int import insert_into_main_table
-
+from Air_int import duplicate_bill_check
 def airinvex(path):
     with pdfplumber.open(path) as pdf:
         pg = pdf.pages[0]
@@ -499,5 +499,10 @@ def airinvex(path):
     print("\n\nCustomer Name: ",cus_name)
     print("\n\nCustomer GST : ",cus_gst)
     print("\n\nPassenger name %s \n\n Invoice Number %s \n\n Invoice Date %s \n\n Flight From %s \n\n Flight To %s \n\n SAC Code %s \n\n Taxable Value %s \n\n Non taxable value %s \n\n Total non tax %s \n\n IGST Amount %s \n\n CGST Amount %s \n\n SGST Amount %s \n\n Total invoice value %s" % (pgnr_nm.upper(),inv_no,inv_dte,flghfrom,flght_to,sac,tax_val,nontax_val,tot,igst_amt,cgst_amt,sgst_amt,tot_inval))
+    duplicate = duplicate_bill_check(inv_no)
     
+    if duplicate == 1:
+        status = 'DUPLICATE'
+    if duplicate ==  0:
+        status = 'PROCCESSED'
     insert_into_main_table('Airline Bill',status,path,supp_name,sup_gst,cus_name,cus_gst,pgnr_nm,inv_no,inv_dte,flghfrom,flght_to,sac,tax_val,nontax_val,tot,igst_amt,cgst_amt,sgst_amt,tot_inval)
