@@ -90,7 +90,7 @@ def insert_into_main_table(title,status,path,supp_name,sup_gst,cus_name,cus_gst,
         task_item = tasks_list.add_item(
             {
                 'Bill_Type' : str(title),
-                'status' : str(status)
+                'status' : str(status),
                 'RequestNo' : str(new_req),
                 'Supplier_nm'  :str(supp_name),
                 'Supplier_gst' : str(sup_gst),
