@@ -11,6 +11,8 @@ from tel_int import duplicate_bill_check
 # pd.set_option('display.max_columns', None)
 # pd.set_option('display.max_rows', None)
 
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
 all_text = []
 words = []
 print('Waiting')
