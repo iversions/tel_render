@@ -9,7 +9,7 @@ def airinvex(path):
         table = pg.extract_table()
         
     pgnr_nm= '-';inv_no= '-';inv_dte= '-';flghfrom= '-';flght_to= '-';sac= '-';tax_val= '-';nontax_val= '-';tot= '-';igst_amt= '-';cgst_amt='-';sgst_amt='-';tot_inval = '-';
-
+    supp_name ='-'; cus_name ='-'
     def is_float(string):
         try:
             float(string)
@@ -37,8 +37,16 @@ def airinvex(path):
     gstin_regex = r'[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}[Z]{1}[0-9A-Z]{1}'
     gstin_number = re.findall(gstin_regex, extracted_text)
 
-    sup_gst = gstin_number[0]
-    cus_gst = gstin_number[1]
+    try:
+        sup_gst = gstin_number[0]
+    except Exception as e:
+        sup_gst = '-'
+
+    try:
+        cus_gst = gstin_number[1]
+    except Exception as e:
+        cus_gst ='-'
+        
     for i in extracted_text.split("\n")[0:15]:
         if 'AirAsia' in i:
             for row in extracted_text.split("\n"):
