@@ -27,16 +27,16 @@ def airext (path):
         text = page.extract_text()
         lines = text.split('\n')
         all_text.extend(lines)
-
-
+    
+    
     try:
         for line in all_text:
             if "Billing Address" in line:
                 employee_name = all_text[all_text.index("Billing Address") + 1]
-        print(employee_name)
+        logging.info("Employee name: %s",employee_name)
     except Exception as e:
+        logging.error("Error Occured Employee name: %s",e)
         employee_name ='-'
-    
     
     try:
         a = 0
@@ -45,8 +45,9 @@ def airext (path):
                 ship_to_state_code = words[a+5]
                 break
             a+=1
-        print(ship_to_state_code)
+        logging.info("Ship Code: %s",ship_to_state_code)
     except Exception as e:
+        logging.error("Error Occured Ship code: %s",e)
         ship_to_state_code ='-'
     try:
         a = 0
@@ -55,8 +56,9 @@ def airext (path):
                 bill_no = words[a+2]
                 break
             a+=1
-        print(bill_no)
+        logging.info("Bill No: %s",bill_no)
     except Exception as e:
+        logging.error("Error Occured bill no: %s",e)
         bill_no ='-'
     
     try:
@@ -67,7 +69,7 @@ def airext (path):
                 bill_period_to = ' '.join(words[a+2:a+7]).split('-')[1]
                 break
             a+=1
-        print(bill_period_from,bill_period_to)
+        logging.info("Bill Period From to: %s  %s",bill_period_from,bill_period_to)
     except Exception as e:
         try:
             a = 0
@@ -77,8 +79,9 @@ def airext (path):
                     bill_period_to = ' '.join(words[a+2:a+9]).split('to')[1]
                     break
                 a+=1
-            print(bill_period_from,bill_period_to)
+            logging.info("Bill Period From to: %s  %s",bill_period_from,bill_period_to)
         except Exception as e:
+            logging.error("Error Occured Bill periof from to : %s",e)
             bill_period_from='-'
             bill_period_to ='-'
     
@@ -89,8 +92,9 @@ def airext (path):
                 bill_date = ' '.join(words[a+2:a+5])
                 break
             a+=1
-        print(bill_date)
+        logging.info("Bill Date: %s",bill_date)
     except Exception as e:
+        logging.error("Error Occured Bill date: %s",e)
         bill_date ='-'
     
     try:
@@ -100,8 +104,9 @@ def airext (path):
                 bill_amount = words[a+2]
                 break
             a+=1
-        print(bill_amount)
+        logging.info("Bill amount: %s",bill_amount)
     except Exception as e:
+        logging.error("Error Occured bill amount: %s",e)
         bill_amount ='-'
     
     try:
@@ -112,8 +117,9 @@ def airext (path):
                 total_amount = words[a+5]
                 break
             a+=1
-        print(taxes,total_amount)
+        logging.info("taxes & total amount: %s %s",taxes,total_amount)
     except Exception as e:
+        logging.error("Error Occured taxes & total : %s",e)
         taxes ='-'
         total_amount ='-'
     
@@ -122,8 +128,9 @@ def airext (path):
         for line in all_text:
             if 'PhoneNo' in line:
                 telephone_no = line.split(':')[1]
-        print('>>> ',telephone_no)
+        logging.info("Telephone no: %s",telephone_no)
     except Exception as e:
+        logging.error("Error Occured telephone: %s",e)
         telephone_no ='-'
     
     try:
@@ -133,9 +140,11 @@ def airext (path):
                 supply = words[a+4]
                 break
             a+=1
-        print(supply)
+        logging.info("Supply: %s",supply)
     except Exception as e:
+        logging.error("Error Occured supply : %s",e)
         supply = '-'
+
     cgst ='-'
     sgst ='-'
     taxable ='-'
