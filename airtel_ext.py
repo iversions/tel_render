@@ -4,6 +4,7 @@ import pdfplumber
 # import pandas as pd
 # from tabulate import tabulate
 import re
+import logging
 from string import ascii_lowercase
 from itertools import groupby
 from tel_int import insert_into_main_table
